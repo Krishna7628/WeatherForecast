@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">WeatherForecast</string>
+    <string name="myLocation">My Location</string>
+    <string name="cities">Cities</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="current_weather_condition">Current Weather Condition</string>
+    <string name="image_view">image_view</string>
 </resources>
