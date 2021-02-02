@@ -13,7 +13,6 @@ class MainActivity : AppCompatActivity() {
 
 
         val navView: BottomNavigationView = findViewById(R.id.nav_view);
-
         navView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
     }
 

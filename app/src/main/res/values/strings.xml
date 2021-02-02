@@ -6,4 +6,27 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="current_weather_condition">Current Weather Condition</string>
     <string name="image_view">image_view</string>
+    <string name="temperature">Temperature</string>
+    <string name="max">Max :</string>
+    <string name="min">Min : </string>
+    <string name="weather_description">Weather Description</string>
+    <string name="wind_speed">Wind Speed </string>
+    <string name="next_5_day">Next Week </string>
+    <string name="submit">Submit</string>
+    <string name="select_cities">"Select Max : 7 or Min : 3 Cities  "</string>
+
+
+    <string-array name="cityList">
+        <item>Delhi</item>
+        <item>Pune</item>
+        <item>Bangalore</item>
+        <item>Hyderabad</item>
+        <item>Vijayawada</item>
+        <item>Mumbai</item>
+        <item>  Chennai</item>
+        <item>Nagpur</item>
+        <item>Lucknow</item>
+        <item>Ahmedabad</item>
+    </string-array>
+
 </resources>
