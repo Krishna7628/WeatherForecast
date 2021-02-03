@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/navigation_current"
-        android:name="com.vamsi.weatherforecast.ui.weatherforecast.CurrentWeatherConditionFragment"
+        android:name="com.vamsi.weatherforecast.ui.weatherforecast.WeatherForeCastFragment"
         android:label="@string/current_weather_condition"
         tools:layout="@layout/fragment_current_weather_condition" />
 

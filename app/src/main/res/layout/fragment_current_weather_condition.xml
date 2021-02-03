@@ -1,137 +1,155 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.weatherforecast.CurrentWeatherConditionFragment">
+    android:background="@color/white"
+    tools:context=".ui.weatherforecast.WeatherForeCastFragment">
 
-    <ImageView
-        android:id="@+id/iv_header_image"
-        android:layout_width="match_parent"
-        android:layout_height="240dp"
-        android:contentDescription="@string/image_view"
-        android:scaleType="fitXY"
-        android:src="@drawable/cloud_2" />
-
-
-    <TextView
-        android:id="@+id/tv_temperature_label"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/iv_header_image"
-        android:layout_margin="16dp"
-        android:text="@string/temperature"
-        android:textSize="18sp" />
-
-    <TextView
-        android:id="@+id/tv_current_temp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/tv_temperature_label"
-        android:layout_marginStart="32dp"
-        android:layout_marginBottom="24dp"
-        android:textSize="48sp" />
-
-
-    <TextView
-        android:id="@+id/tv_max_temp_label"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/tv_current_temp"
-        android:layout_marginStart="32dp"
-        android:text="@string/max"
-        android:textSize="16sp" />
-
-    <TextView
-        android:id="@+id/tv_max_temp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/tv_current_temp"
-        android:layout_marginStart="8dp"
-        android:layout_toEndOf="@+id/tv_max_temp_label"
-        android:textSize="16sp" />
-
-    <TextView
-        android:id="@+id/tv_min_temp_label"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/tv_current_temp"
-        android:layout_marginStart="32dp"
-        android:layout_toRightOf="@+id/tv_max_temp"
-        android:text="@string/min"
-        android:textSize="16sp" />
-
-    <TextView
-        android:id="@+id/tv_min_temp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/tv_current_temp"
-        android:layout_marginStart="8dp"
-        android:layout_toEndOf="@+id/tv_min_temp_label"
-        android:textSize="16sp" />
-
-    <TextView
-        android:id="@+id/tv_weather_description_label"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/iv_header_image"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="24dp"
-        android:text="@string/weather_description"
-        android:textSize="18sp" />
-
-    <TextView
-        android:id="@+id/tv_weather_description"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/tv_weather_description_label"
-        android:layout_alignParentEnd="true"
-        android:layout_margin="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="24dp"
-        android:text="@string/temperature"
-        android:textSize="18sp" />
-
-
-    <TextView
-        android:id="@+id/tv_wind_speed"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/tv_wind_speed_label"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="4dp"
-        android:layout_marginEnd="24dp"
-        android:text="@string/temperature"
-        android:textSize="18sp" />
-
-    <TextView
-        android:id="@+id/tv_wind_speed_label"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/tv_weather_description"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="24dp"
-        android:layout_toStartOf="@+id/tv_wind_speed"
-        android:text="@string/wind_speed"
-        android:textSize="18sp" />
-
-    <TextView
-        android:id="@+id/tv_next_week"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/tv_max_temp_label"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="24dp"
-        android:text="@string/next_5_day"
-        android:textSize="20sp" />
+        android:orientation="vertical">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_list_days"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/tv_next_week"
-        android:layout_marginTop="8dp" />
+        <ImageView
+            android:id="@+id/iv_header_image"
+            android:layout_width="match_parent"
+            android:layout_height="240dp"
+            android:contentDescription="@string/image_view"
+            android:scaleType="fitXY"
+            android:src="@drawable/cloud_2" />
 
-</RelativeLayout>
+
+        <TextView
+            android:id="@+id/tv_temperature_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/iv_header_image"
+            android:layout_margin="16dp"
+            android:text="@string/temperature"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/tv_current_temp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_temperature_label"
+            android:layout_marginStart="32dp"
+            android:layout_marginBottom="24dp"
+            android:textSize="48sp" />
+
+
+        <TextView
+            android:id="@+id/tv_temp_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_temperature_label"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginBottom="24dp"
+            android:layout_toEndOf="@+id/tv_current_temp"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/tv_max_temp_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_current_temp"
+            android:layout_marginStart="32dp"
+            android:text="@string/max"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/tv_max_temp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_current_temp"
+            android:layout_marginStart="8dp"
+            android:layout_toEndOf="@+id/tv_max_temp_label"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/tv_min_temp_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_current_temp"
+            android:layout_marginStart="32dp"
+            android:layout_toRightOf="@+id/tv_max_temp"
+            android:text="@string/min"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/tv_min_temp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_current_temp"
+            android:layout_marginStart="8dp"
+            android:layout_toEndOf="@+id/tv_min_temp_label"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/tv_weather_description_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/iv_header_image"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="24dp"
+            android:text="@string/weather_description"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/tv_weather_description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_weather_description_label"
+            android:layout_alignParentEnd="true"
+            android:layout_margin="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="24dp"
+            android:text="@string/temperature"
+            android:textSize="18sp" />
+
+
+        <TextView
+            android:id="@+id/tv_wind_speed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_wind_speed_label"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="24dp"
+            android:text="@string/temperature"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/tv_wind_speed_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_weather_description"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="24dp"
+            android:layout_toStartOf="@+id/tv_wind_speed"
+            android:text="@string/wind_speed"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/tv_next_week"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_max_temp_label"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="24dp"
+            android:text="@string/next_5_day"
+            android:textSize="20sp" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_list_days"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_next_week"
+            android:layout_marginTop="8dp" />
+
+    </RelativeLayout>
+</androidx.core.widget.NestedScrollView>

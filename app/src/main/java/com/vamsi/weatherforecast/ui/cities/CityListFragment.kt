@@ -46,7 +46,6 @@ class CityListFragment : Fragment() {
         if (selectedCities.isEmpty() && selectedCities.size < 3) {
             displayBottomSheetForCitySelection()
         } else {
-
          displaySelectedCityList(selectedCities)
         }
         return rootView;
@@ -82,6 +81,7 @@ class CityListFragment : Fragment() {
                 val builder = AlertDialog.Builder(this.requireContext())
                 builder.setMessage("Cities selected Successfully")
                 builder.setPositiveButton("Ok") { dialogInterface, i ->
+                    displaySelectedCityList(selectedCities)
                     bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
                     dialog.dismiss()
                 }

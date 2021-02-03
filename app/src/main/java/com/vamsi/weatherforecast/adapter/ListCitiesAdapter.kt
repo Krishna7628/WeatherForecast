@@ -12,7 +12,7 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.RecyclerView
 import com.vamsi.weatherforecast.R
-import com.vamsi.weatherforecast.ui.weatherforecast.CurrentWeatherConditionFragment
+import com.vamsi.weatherforecast.ui.weatherforecast.WeatherForeCastFragment
 
 
 class ListCitiesAdapter(var context: Context, var cityList: MutableList<String>) :
@@ -37,15 +37,15 @@ RecyclerView.Adapter<ListCitiesAdapter.MyViewHolder>() {
         holder.cityName.text = cityList[position]
 
         holder.cityName.setOnClickListener(View.OnClickListener {
-            val fragment = CurrentWeatherConditionFragment() //  object of next fragment
+            val fragment = WeatherForeCastFragment() //  object of next fragment
 
             val bundle = Bundle()
             bundle.putString("cityName", cityList[position])
             fragment.setArguments(bundle)
             val fragmentManager: FragmentManager = (context as FragmentActivity).supportFragmentManager
             val fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
+            fragmentTransaction.remove( WeatherForeCastFragment())
             fragmentTransaction.replace(R.id.container, fragment)
-            fragmentTransaction.addToBackStack(null)
             fragmentTransaction.commit()
 
         })
