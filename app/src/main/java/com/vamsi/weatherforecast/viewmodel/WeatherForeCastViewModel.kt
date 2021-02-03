@@ -18,7 +18,7 @@ class WeatherForeCastViewModel: ViewModel() {
     fun getWeatherForeCastObserver(): MutableLiveData<WeatherForeCastResponse>? {
         return weatherForeCastResponse
     }
-    fun makeApiCall(lat: String, lon: String) {
+    fun makeApiCall(lat: String, lon: String) {              // making call based on lat lon
         val request = buildService(APIService::class.java)
         val call = request.getWeatherForeCast(lat, lon)
 

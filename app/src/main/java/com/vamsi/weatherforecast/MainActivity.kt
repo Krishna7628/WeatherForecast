@@ -15,18 +15,22 @@ import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
-    var permissionStatus = false
     private val REQUEST_ID_MULTIPLE_PERMISSIONS = 1
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+
+
+
+
+        //asking for Permissions and version above Marshmallow
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && checkSelfPermission(
                     Manifest.permission.ACCESS_COARSE_LOCATION
                 ) != PackageManager.PERMISSION_GRANTED) {
-                permissionStatus = checkAndRequestPermissions()
+                checkAndRequestPermissions()                 //request for asking permissions  1.ACCESS_FINE_LOCATION  2.ACCESS_COARSE_LOCATION
             }
         }
 
@@ -34,7 +38,7 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    fun checkAndRequestPermissions(): Boolean {
+    fun checkAndRequestPermissions(): Boolean {              //
         val location =
             ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
         val coarseLocation =

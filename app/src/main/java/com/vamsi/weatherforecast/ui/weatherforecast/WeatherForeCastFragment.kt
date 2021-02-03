@@ -39,48 +39,33 @@ import java.util.*
  * create an instance of this fragment.
  */
 class WeatherForeCastFragment : Fragment() {
-    var permissionStatus = false
     private val REQUEST_ID_MULTIPLE_PERMISSIONS = 1
     private var locationManager: LocationManager? = null
 
     private var selectedLocation: Location? = null
 
     @SuppressLint("VisibleForTests")
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
-        val rootView = inflater.inflate(
-            R.layout.fragment_current_weather_condition,
-            container,
-            false
-        )
+        val rootView = inflater.inflate(R.layout.fragment_current_weather_condition, container, false)
 
-//        (activity as MainActivity).nav_view.menu.get(0)
+        locationManager = this.requireActivity().getSystemService(Context.LOCATION_SERVICE) as LocationManager
 
-        locationManager =
-            this.requireActivity().getSystemService(Context.LOCATION_SERVICE) as LocationManager
-
-        val bundle = arguments
+        val bundle = arguments                                 //getting city name form cityListfragment after selecting particular city and  firstly taking current location.
         var cityName = ""
         if (bundle != null) {
             //getting selected city name from city list
             cityName = bundle!!.getSerializable("cityName") as String
-            setWeatherReport(cityName)
-        } else {
-            setWeatherReport(cityName)
         }
+        setWeatherReport(cityName)        // re checking the version and permissions
         return rootView
     }
 
     private fun setWeatherReport(cityName: String) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            permissionStatus = checkAndRequestPermissions()
-
+           val permissionStatus = checkAndRequestPermissions()
             if (permissionStatus) {
-                getLocation(cityName)
+                getLocation(cityName)                                         //getting Lat Lon based current location as well as city name base.
             } else {
                 displayAlert("Please accept the permission")
             }
@@ -89,22 +74,21 @@ class WeatherForeCastFragment : Fragment() {
         }
     }
 
-    @SuppressLint("MissingPermission")
+    @SuppressLint("MissingPermission", "SetTextI18n")
     private fun getLocation(cityName: String) {
         var latitude = ""
         var longitude = ""
 
-        if (cityName.isEmpty()) {
+        if (cityName.isEmpty()) {                                                                             // check for city name where it is empty or not. if it empty getting current location else city location
 
-            val isGPSEnabled = locationManager!!.isProviderEnabled(LocationManager.GPS_PROVIDER)
-            val isNetworkEnabled =
-                locationManager!!.isProviderEnabled(LocationManager.NETWORK_PROVIDER)
+            val isGPSEnabled = locationManager!!.isProviderEnabled(LocationManager.GPS_PROVIDER)             // checking for GPS and Network availability
+            val isNetworkEnabled = locationManager!!.isProviderEnabled(LocationManager.NETWORK_PROVIDER)
 
             if (isGPSEnabled || isNetworkEnabled) {
 
                 var locationGps: Location? = null
                 var locationNetwork: Location? = null
-                if (isGPSEnabled) {
+                if (isGPSEnabled) {                                                                            // if gps available
                     locationManager!!.requestLocationUpdates(
                         LocationManager.GPS_PROVIDER,
                         10000,
@@ -168,7 +152,7 @@ class WeatherForeCastFragment : Fragment() {
                     }
 
 
-                    if (locationGps != null && locationNetwork != null) {
+                    if (locationGps != null && locationNetwork != null) {                     // getting accuracy lat and lon
                         if (locationGps!!.accuracy > locationGps!!.accuracy) {
                             latitude = locationNetwork!!.latitude.toString()
                             longitude = locationNetwork!!.longitude.toString()
@@ -203,22 +187,22 @@ class WeatherForeCastFragment : Fragment() {
 
 
 
-        var weatherForeCastViewModel = ViewModelProvider(this).get(WeatherForeCastViewModel::class.java)
+        var weatherForeCastViewModel = ViewModelProvider(this).get(WeatherForeCastViewModel::class.java)                              // initialization WeatherForeCastViewModel
         weatherForeCastViewModel.getWeatherForeCastObserver()?.observe(
-            this.requireActivity(),
+            this.requireActivity(),                                                                                                         // observe gets the response from  WeatherForeCastViewModel
             Observer<WeatherForeCastResponse> { weatherForeCastResponse ->
                 if (weatherForeCastResponse != null) {
 
-                    tv_temperature_label.text = weatherForeCastResponse.city.name        //city name
-                    tv_current_temp.text = weatherForeCastResponse.list.get(0).main.temp.toString()
-                    tv_max_temp.text = weatherForeCastResponse.list.get(0).main.tempMax.toString()
-                    tv_min_temp.text = weatherForeCastResponse.list.get(0).main.tempMax.toString()
+                    tv_temperature_label.text = weatherForeCastResponse.city.name                                                           //displaying the weather report
+                    tv_current_temp.text = weatherForeCastResponse.list.get(0).main.temp.toString()+ "k"
+                    tv_max_temp.text = weatherForeCastResponse.list.get(0).main.tempMax.toString() + "k"
+                    tv_min_temp.text = weatherForeCastResponse.list.get(0).main.tempMax.toString()+ "k"
                     tv_weather_description.text =
                         weatherForeCastResponse.list.get(0).weather.get(0).description.toString()
                     tv_wind_speed.text = weatherForeCastResponse.list.get(0).wind.speed.toString()
 
 
-                    val WeekWorCastAdapter = WeekForeCastAdapter(weatherForeCastResponse.list)
+                    val WeekWorCastAdapter = WeekForeCastAdapter(weatherForeCastResponse.list)                                               //displaying the weather report for 5 days and 3 hour wise
                     rv_list_days.layoutManager = LinearLayoutManager(this.requireContext())
                     rv_list_days.adapter = WeekWorCastAdapter
                     rv_list_days.setNestedScrollingEnabled(false)
@@ -230,7 +214,7 @@ class WeatherForeCastFragment : Fragment() {
 
     }
 
-    private fun displayAlert(msg: String) {
+    private fun displayAlert(msg: String) {                                                                                                 // alert for showing  issue msg
         val builder = AlertDialog.Builder(this.requireContext())
         builder.setMessage(msg)
         builder.setPositiveButton("Ok") { dialogInterface, i ->

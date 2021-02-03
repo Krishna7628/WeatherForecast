@@ -1,5 +1,6 @@
 package com.vamsi.weatherforecast.adapter
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -33,11 +34,12 @@ class WeekForeCastAdapter(var list: List<Week>) :
         return MyViewHolder(itemView)
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: WeekForeCastAdapter.MyViewHolder, position: Int) {
         val day = list[position]
-        holder.currentTemp.text = day.main.temp.toString()
-        holder.maxTemp.text = day.main.tempMax.toString()
-        holder.minTemp.text = day.main.tempMin.toString()
+        holder.currentTemp.text = day.main.temp.toString()+ "k"
+        holder.maxTemp.text = day.main.tempMax.toString()+ "k"
+        holder.minTemp.text = day.main.tempMin.toString()+ "k"
         holder.windSpeed.text = day.wind.speed.toString()
         holder.dateTime.text = day.dtTxt.toString()
         holder.description.text = day.weather.get(0).description.toString()
